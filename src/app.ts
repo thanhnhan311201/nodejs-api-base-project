@@ -22,7 +22,7 @@ const isProduction = process.env.NODE_ENV === "production";
 const app: Express = express();
 const httpServer = createServer(app);
 
-// add ultil middleware
+// add util middleware
 const accessLogStream = createStream("access.log", {
   interval: "1d",
   path: path.join(__dirname, "log"),
@@ -46,7 +46,7 @@ app.use(bodyParser.json());
 app.use("/api", apiRouter);
 app.get("/", (req: Request, res: Response, next: NextFunction) =>
   res.json({
-    all_todos: `${BASE_URL_API}/v1//todo/todos`,
+    all_todos: `${BASE_URL_API}/v1/todo/todos`,
     add_todo: `${BASE_URL_API}/v1/todo/todo`,
   })
 );
