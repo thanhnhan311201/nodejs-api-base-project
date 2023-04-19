@@ -28,7 +28,14 @@ const accessLogStream = createStream("access.log", {
   path: path.join(__dirname, "log"),
 });
 app.use(
-  isProduction ? morgan("combined", { stream: accessLogStream }) : morgan("dev")
+  isProduction
+    ? morgan(
+        '⚡️[API]: :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"',
+        { stream: accessLogStream }
+      )
+    : morgan(
+        "⚡️[API]: :method :url :status :response-time ms - :res[content-length]"
+      )
 );
 app.use(helmet());
 app.use(
