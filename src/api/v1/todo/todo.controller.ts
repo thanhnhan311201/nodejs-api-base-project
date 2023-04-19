@@ -1,4 +1,5 @@
 import type { RequestHandler } from "express";
+import createHttpError, { CreateHttpError } from "http-errors";
 
 import todoService from "./todo.service";
 
@@ -14,7 +15,7 @@ namespace todoController {
       });
     } catch (error: any) {
       if (!error.status) {
-        error.status = 500;
+        return next(createHttpError.InternalServerError);
       }
       next(error);
     }
@@ -32,7 +33,7 @@ namespace todoController {
       });
     } catch (error: any) {
       if (!error.status) {
-        error.status = 500;
+        return next(createHttpError.InternalServerError);
       }
       next(error);
     }

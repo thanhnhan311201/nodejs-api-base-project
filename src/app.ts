@@ -11,7 +11,8 @@ import { createServer } from "http";
 import bodyParser from "body-parser";
 
 import connectDatabase from "./config/db.config";
-import apiRouter from "./api/v1/router";
+import { BASE_URL_API } from "./config/general.config";
+import apiRouter from "./router";
 
 connectDatabase();
 
@@ -41,13 +42,24 @@ app.use(
 // add body-parser
 app.use(bodyParser.json());
 
-// add request response handler
+// add request handler
 app.use("/api", apiRouter);
-app.use("/", (req: Request, res: Response, next: NextFunction) => {
-  res.json({ message: "Welcome to my world!" });
-});
+app.get("/", (req: Request, res: Response, next: NextFunction) =>
+  res.json({
+    all_todos: `${BASE_URL_API}/v1//todo/todos`,
+    add_todo: `${BASE_URL_API}/v1/todo/todo`,
+  })
+);
 app.use("*", (req: Request, res: Response, next: NextFunction) => {
-  res.json({ message: "Welcome to my world!" });
+  res.status(404).json({
+    status: "error",
+    code: 404,
+    message: "Not found!",
+    links: {
+      all_todos: `${BASE_URL_API}/v1/todo/todos`,
+      add_todo: `${BASE_URL_API}/v1/todo/todo`,
+    },
+  });
 });
 
 // add error handler middleware

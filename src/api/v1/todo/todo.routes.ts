@@ -2,10 +2,10 @@ import express from "express";
 
 import todoController from "./todo.controller";
 
-const todoRouter = express.Router();
+const todoRoutes = express.Router();
 
-todoRouter.get("/todos", todoController.getAllTodos);
+todoRoutes.get("/todos", todoController.getAllTodos);
 
-todoRouter.post("/todo", todoController.addTodo);
+todoRoutes.post("/todo", todoController.addTodo);
 
-export default todoRouter;
+export default todoRoutes;

@@ -1,5 +1,5 @@
 import todoModel from "./todo.model";
-import { ITodoModel } from "../interfaces/model.interface";
+import { ITodoModel } from "../../../config/interfaces/model.interface.config";
 
 namespace todoService {
   export const getAllTodos = async () => {
