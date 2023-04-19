@@ -30,11 +30,11 @@ const accessLogStream = createStream("access.log", {
 app.use(
   isProduction
     ? morgan(
-        '⚡️[API]: :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"',
+        '⚡️[api]: :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"',
         { stream: accessLogStream }
       )
     : morgan(
-        "⚡️[API]: :method :url :status :response-time ms - :res[content-length]"
+        "⚡️[api]: :method :url :status :response-time ms - :res[content-length]"
       )
 );
 app.use(helmet());
