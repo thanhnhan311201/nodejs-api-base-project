@@ -1,1 +1,23 @@
-// Add your helper function here
+export const catchSync = <Fn extends (...args: any) => any>(
+  fn: Fn,
+  ...args: Parameters<Fn>
+): [ReturnType<Fn> | undefined, any] => {
+  try {
+    const result = fn(args);
+    return [result, undefined];
+  } catch (error) {
+    return [undefined, error];
+  }
+};
+
+export const catchAsync = async <Fn extends (...args: any) => any>(
+  fn: Fn,
+  ...args: Parameters<Fn>
+): Promise<[ReturnType<Fn> | undefined, any]> => {
+  try {
+    const result = fn(args);
+    return [result, undefined];
+  } catch (error) {
+    return [undefined, error];
+  }
+};
