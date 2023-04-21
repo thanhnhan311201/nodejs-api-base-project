@@ -10,11 +10,8 @@ import { createStream } from "rotating-file-stream";
 import { createServer } from "http";
 import bodyParser from "body-parser";
 
-import connectDatabase from "./configs/db.config";
 import { BASE_URL_API } from "./configs/general.config";
 import apiRouter from "./router";
-
-connectDatabase();
 
 const isProduction = process.env.NODE_ENV === "production";
 
